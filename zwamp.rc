@@ -1,0 +1,78 @@
+1	VERSIONINFO
+	FILEVERSION 2,1,0,1
+	PRODUCTVERSION 2,1,0,1
+	FILEOS 0x4L // Win32
+	FILETYPE 0x1L
+	{
+		BLOCK "StringFileInfo"
+		{
+			BLOCK "040904B0"
+			{
+				VALUE "CompanyName","F3::Factory/Bong Cosca"
+				VALUE "ProductName","Z-WAMP Server Pack"
+				VALUE "ProductVersion","2.1.0"
+				VALUE "LegalCopyright","GPL3"
+				VALUE "FileDescription","Z-WAMP controller"
+			}
+		}
+		BLOCK "VarFileInfo"
+		{
+			VALUE "Translation",0x0409,0x04b0 // US English, Unicode
+		}
+	}
+2	ICON "zwamp.ico"
+3	MENU
+	{
+		POPUP "ContextMenu"
+		{
+			MENUITEM "Restart",11
+			MENUITEM "Stop",12
+			MENUITEM SEPARATOR
+			POPUP "Services"
+			{
+				MENUITEM "Apache",21
+				MENUITEM "MemCache",22
+				MENUITEM "MongoDB",23
+				MENUITEM "MySQL",24
+			}
+			POPUP "Configuration"
+			{
+				MENUITEM "Apache Main",31
+				MENUITEM "Apache vHosts",32
+				MENUITEM "MySQL",33
+				MENUITEM "PHP",34
+				MENUITEM "Windows Hosts",35
+			}
+			POPUP "Logs"
+			{
+				MENUITEM "Access Log",41
+				MENUITEM "Error Log",42
+			}
+			POPUP "Tools"
+			{
+				MENUITEM "Adminer",51
+				MENUITEM "APC Stats",52
+				MENUITEM "MemCache Stats",53
+				MENUITEM "MongoDB Admin",54
+				MENUITEM "PHP Info",55
+			}
+			POPUP "Documentation"
+			{
+				MENUITEM "Apache",61
+				MENUITEM "HTML5",62
+				MENUITEM "Javascript",63
+				MENUITEM "MongoDB",64
+				MENUITEM "MySQL",65
+				MENUITEM "PHP",66
+			}
+			MENUITEM SEPARATOR
+			MENUITEM "Run on Windows Startup",70
+			MENUITEM SEPARATOR
+			MENUITEM "Check for Updates",81
+			MENUITEM "Donate via PayPal",82
+			MENUITEM "About Z-WAMP",83
+			MENUITEM SEPARATOR
+			MENUITEM "Exit",90
+		}
+	}
+4	MANIFEST "zwamp.manifest"
