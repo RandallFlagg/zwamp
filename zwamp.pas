@@ -136,6 +136,9 @@ function MsiQueryProductStateA(product:LPSTR):LONG;
 // Global exception handler
 procedure ExHandler(obj:TObject);
 begin
+	MessageBox(0,LPSTR(Exception(obj).Message),LPSTR(app.name),
+		MB_OK or MB_ICONERROR or MB_SYSTEMMODAL);
+	Halt;
 end;
 
 // Remove virtual drive
@@ -689,28 +692,6 @@ begin
 			if (Win32MajorVersion>5) then
 				if VCInstalled then
 				begin
-					mReg:=TRegistry.Create;
-					mReg.RootKey:=HKEY_LOCAL_MACHINE;
-					mReg.OpenKey(REG_UAC,FALSE);
-					if (mReg.ValueExists('EnableLUA')) and
-						(mReg.ReadInteger('EnableLUA')>0) then
-					begin
-						if MessageBox(0,LPSTR(app.name+' requires full '+
-							'administrative privilege'+CRLF+
-							'to run properly.'+CRLF+CRLF+
-							'Modify Windows settings and restart '+
-							'the computer?'),LPSTR(app.name),
-							MB_OKCANCEL or MB_ICONEXCLAMATION or
-							MB_SYSTEMMODAL)=IDOK then
-						begin
-							mReg.WriteInteger('ConsentPromptBehaviorAdmin',0);
-							mReg.WriteInteger('EnableLUA',0);
-							Reboot;
-						end;
-						Halt;
-					end;
-					mReg.CloseKey;
-					mReg.Destroy;
 					SetTimer(0,0,TIMEOUT,@ReduceRAM);
 					// Define hidden window
 					wClass.cbClsExtra:=0;
