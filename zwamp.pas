@@ -50,6 +50,11 @@ type
 		path:'\.sys\php';
 		args:'';
 	);
+	SVC_PERL:Service=(
+		exe:'perl.exe';
+		path:'\.sys\miniperl\bin';
+		args:'';
+	);
 	// Config files
 	CFG_Apache:String='\.sys\apache2\conf\httpd.conf';
 	CFG_vHosts:String='\.sys\apache2\conf\vhosts.conf';
@@ -557,6 +562,7 @@ begin
 			begin
 				SetSystemCursor(LoadCursor(0,IDC_ARROW),OCR_APPSTARTING);
 				restart:=RegisterWindowMessage('TaskbarCreated');
+				PostMessage(HWND_BROADCAST,restart,0,0);
 				// Link to registry
 				mReg:=TRegistry.Create;
 				mReg.RootKey:=HKEY_LOCAL_MACHINE;
@@ -564,8 +570,9 @@ begin
 				CreateDrive;
 				// Activate services
 				Server('start');
-				// Add PHP binary to PATH
+				// Add PHP and Perl to PATH
 				ModPath(SVC_PHP);
+				ModPath(SVC_PERL);
 				// Add icon
 				iSize:=SizeOf(NOTIFYICONDATA);
 				ZeroMemory(@icon,iSize);
@@ -641,25 +648,6 @@ begin
 	app.owner:=version.GetVersionSetting('CompanyName');
 	app.license:=version.GetVersionSetting('LegalCopyright');
 	version.Destroy;
-end;
-
-// Restart computer
-procedure Reboot;
-var
-	token:HANDLE;
-	uniqID:TTokenPrivileges;
-begin
-	// Set privilege
-	OpenProcessToken(GetCurrentProcess,
-		TOKEN_ADJUST_PRIVILEGES or TOKEN_QUERY,@token);
-	LookupPrivilegeValue(NIL,SE_SHUTDOWN_NAME,@uniqID.Privileges[0].Luid);
-	uniqID.Privileges[0].Attributes:=SE_PRIVILEGE_ENABLED;
-	uniqID.PrivilegeCount:=1;
-	AdjustTokenPrivileges(token,FALSE,@uniqID,0,
-		PTOKEN_PRIVILEGES(NIL),NIL);
-	CloseHandle(token);
-	// Restart
-	ExitWindowsEx(EWX_REBOOT,0);
 end;
 
 function VCInstalled:BOOL;

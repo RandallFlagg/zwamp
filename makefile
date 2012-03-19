@@ -19,7 +19,7 @@ delete=rm -f
 compress=mpress -q
 codesign=signtool sign /t http://time.certum.pl /f $(PFX) $(exe)
 
-all: $(source) $(rc)
+all: $(source)
 	$(RC) /ni /machine $(rctarget) /r $(rcapp)
 	$(RC) /ni /machine $(rctarget) /r $(rcman)
 	$(PC) -P$(pctarget) -o$(exe) $(source)
