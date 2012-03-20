@@ -1,6 +1,6 @@
 1	VERSIONINFO
-	FILEVERSION 2,1,0,1
-	PRODUCTVERSION 2,1,0,1
+	FILEVERSION 2,1,1,0
+	PRODUCTVERSION 2,1,1,0
 	FILEOS 0x4L // Win32
 	FILETYPE 0x1L
 	{
@@ -10,7 +10,7 @@
 			{
 				VALUE "CompanyName","F3::Factory/Bong Cosca"
 				VALUE "ProductName","Z-WAMP Server Pack"
-				VALUE "ProductVersion","2.1.0"
+				VALUE "ProductVersion","2.1.1"
 				VALUE "LegalCopyright","GPL3"
 				VALUE "FileDescription","Z-WAMP controller"
 			}

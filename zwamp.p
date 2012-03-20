@@ -20,7 +20,7 @@ type
 	VersionInfo=Record
 		owner,version,name,license:String;
 	end;
- const
+const
 	// Globals
 	GUID:String='{39d8c3af-1f05-4587-a217-5b6acbae4b9a}';
 	CRLF:String=#13#10;

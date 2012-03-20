@@ -1,15 +1,15 @@
 PC=fpc
 RC=gorc
 
-ifndef target
-	rctarget=AMD64
-	pctarget=x86_64
-else
+rctarget=AMD64
+pctarget=x86_64
+
+ifeq ($(target),i386)
 	rctarget=X86
 	pctarget=i386
 endif
 
-source=zwamp.pas
+source=zwamp.p
 exe=zwamp.exe
 rcapp=zwamp.rc
 rcman=manifest.rc
